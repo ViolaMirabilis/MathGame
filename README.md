@@ -5,6 +5,6 @@ A simple **MathProject** which performs basic calculations:
 * division
   with addition of mini-games that make practicing math problems more exciting.
 
-  Additional features:
-* history of games
-* record of time spend on a given minigame
+**  Additional features:**
+- history of games
+- record of time spend on a given minigame
