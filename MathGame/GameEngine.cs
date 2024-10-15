@@ -21,6 +21,8 @@
                 Console.Write($"{firstNumber} + {secondNumber} = ");
                 var result = Console.ReadLine();
 
+                result = Helpers.ValidateResult(result);
+
                 if (int.Parse(result) == firstNumber + secondNumber)        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -65,6 +67,8 @@
                 Console.Write($"{firstNumber} - {secondNumber} = ");
                 var result = Console.ReadLine();
 
+                result = Helpers.ValidateResult(result);
+
                 if (int.Parse(result) == firstNumber - secondNumber)        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -107,6 +111,8 @@
                 Console.Write($"{firstNumber} * {secondNumber} = ");
                 var result = Console.ReadLine();
 
+                result = Helpers.ValidateResult(result);
+
                 if (int.Parse(result) == firstNumber * secondNumber)        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -146,6 +152,8 @@
                 Console.WriteLine($"{firstNumber} : {secondNumber}");
                 var result = Console.ReadLine();
 
+                result = Helpers.ValidateResult(result);
+
                 if (int.Parse(result) == firstNumber / secondNumber)        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -169,6 +177,5 @@
             Helpers.AddToHistory(score, GameType.Division);
 
         }
-        
     }
 }

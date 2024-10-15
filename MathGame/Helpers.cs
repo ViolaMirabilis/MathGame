@@ -9,7 +9,7 @@ namespace MathGame
 
         static List<Game> games = new List<Game>()     // list of a "Game" type so we can store the same datatype in it
         {
-            new Game { Date = DateTime.Now.AddDays(1), Type = GameType.Addition, Score = 5 },
+            /* new Game { Date = DateTime.Now.AddDays(1), Type = GameType.Addition, Score = 5 },
             new Game { Date = DateTime.Now.AddDays(2), Type = GameType.Multiplication, Score = 4 },
             new Game { Date = DateTime.Now.AddDays(3), Type = GameType.Division, Score = 4 },
             new Game { Date = DateTime.Now.AddDays(4), Type = GameType.Subtraction, Score = 3 },
@@ -21,7 +21,7 @@ namespace MathGame
             new Game { Date = DateTime.Now.AddDays(10), Type = GameType.Multiplication, Score = 1 },
             new Game { Date = DateTime.Now.AddDays(11), Type = GameType.Subtraction, Score = 0 },
             new Game { Date = DateTime.Now.AddDays(12), Type = GameType.Division, Score = 2 },
-            new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 },
+            new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 } */
         };
         internal static void GamesHistory(string message)
         {
@@ -30,7 +30,7 @@ namespace MathGame
             //var gamesToPrint = games.Where(x => x.Date > new DateTime(2024, 10, 20));       // we compare already set dates to a new DateTime object [which holds a new date proposed by me]
             //var gamesToPrint = games.Where(x => x.Date > new DateTime(2024, 10, 20) && x.Score > 3);        // more complex. a given date + a given score
             //var gamesToPrint = games.Where(x => x.Date > new DateTime(2024, 10, 20)).OrderByDescending(x => x.Score);       // sorts by descending score
-            var gamesToPrint = games.OrderByDescending(x => x.Score);
+            //var gamesToPrint = games.OrderByDescending(x => x.Score);
 
             Console.Clear();
             if (games.Count == 0)
@@ -42,7 +42,7 @@ namespace MathGame
             else
             {
                 Console.WriteLine("-----------------------------------------------");
-                foreach (var game in gamesToPrint)     // runs through the games List
+                foreach (var game in games)     // runs through the games List
                 {
                     Console.WriteLine($"- Date: {game.Date} | Game: {game.Type} | Score: {game.Score}");
                 }
@@ -88,6 +88,33 @@ namespace MathGame
 
             return score;  
         }
+        internal static string? ValidateResult(string result)
+        {
+            while (string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid input! Try Again.");
+                Console.ResetColor();
+                result = Console.ReadLine();
+            }
+            return result;
+        }
 
+        internal static string GetName()
+        {
+            Console.Write($"Your name: ");
+
+            var name = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(name) || name.Contains(" "))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Name cannot be empty!");
+                Console.ResetColor();
+                name = Console.ReadLine();
+            }
+
+            return name;
+        }
     }
 }

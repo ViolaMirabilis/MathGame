@@ -10,19 +10,10 @@ namespace MathGame
         static void Main(string[] args)
         {
             Menu menu = new Menu();
-            string name = GetName();
+            string name = Helpers.GetName();
 
             menu.ShowMenu(name);       // using the Menu menu object to call the ShowMenu(); method.
 
         }
-
-        static string GetName()
-        {
-            Console.Write("Enter your name: ");
-            string name = Console.ReadLine();
-            return name;
-        }
-        
-
     }
 }
