@@ -3,6 +3,7 @@ A simple **MathProject** which performs basic calculations:
 * subtraction
 * multiplication
 * division
+
 with addition of mini-games that make practicing math problems more exciting.
 
 **Additional features:**
