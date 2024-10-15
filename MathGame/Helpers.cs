@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace MathGame
@@ -61,8 +62,8 @@ namespace MathGame
         internal static int[] GetDivisionNumbers()
         {
             var random = new Random();
-            var firstNumber = random.Next(1, 99);
-            var secondNumber = random.Next(1, 99);
+            var firstNumber = random.Next(1, 20);
+            var secondNumber = random.Next(1, 5);
 
             var result = new int[2];        // two element array [number1, number2]
 
@@ -77,6 +78,35 @@ namespace MathGame
             result[1] = secondNumber;
 
             return result;      // result is an array of 2 integers
+        }
+
+        // sets different number values to the corresponding difficulty levels
+        internal static int[] GetDifficultyNumbers(Difficulty difficultyLevel)
+        {
+            var random = new Random();
+            int firstNumber = 0;
+            int secondNumber = 0;
+
+            var result = new int[2];    // an array that holds two numbers [0] and [1] (number one, number two)
+            switch (difficultyLevel)
+            {
+                case Difficulty.Easy:       // numbers 1-10
+                    firstNumber = random.Next(1, 11);
+                    secondNumber = random.Next(1, 11);
+                    break;
+
+                case Difficulty.Medium:     // numbers 11 - 25
+                    firstNumber = random.Next(11, 26);
+                    secondNumber = random.Next(11, 26);
+                    break;
+                case Difficulty.Hard:       // numbers 25-50;
+                    firstNumber = random.Next(25, 51);
+                    secondNumber = random.Next(25, 51);
+                    break;
+            }
+            result[0] = firstNumber;
+            result[1] = secondNumber;
+            return result;
         }
         internal static int TotalScore()
         {
@@ -99,7 +129,6 @@ namespace MathGame
             }
             return result;
         }
-
         internal static string GetName()
         {
             Console.Write($"Your name: ");
@@ -116,5 +145,29 @@ namespace MathGame
 
             return name;
         }
+        internal static string GameDuration(Stopwatch timer)
+        {
+            TimeSpan ts = timer.Elapsed;
+
+            string elapsedTime = "";
+
+            if (ts.Seconds < 60)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                elapsedTime = String.Format($"{ts.Seconds} seconds!");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                elapsedTime = String.Format($"{ts.Minutes} minute(s) and {ts.Seconds} seconds!");
+                Console.ResetColor();
+            }
+            
+
+            return elapsedTime;
+            
+        }
+
     }
 }

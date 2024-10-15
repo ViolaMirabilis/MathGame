@@ -22,3 +22,10 @@ internal enum GameType
     Multiplication,
     Division
 }
+
+internal enum Difficulty
+{
+    Easy = 1,
+    Medium,
+    Hard
+}

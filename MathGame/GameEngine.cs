@@ -1,33 +1,34 @@
-﻿namespace MathGame
+﻿using System.Diagnostics;
+
+namespace MathGame
 {
     internal class GameEngine
     {
-        internal void AdditionGame(string message)
+        internal void AdditionGame(string message, Difficulty difficultyLevel)
         {
+            var numbers = Helpers.GetDifficultyNumbers(difficultyLevel);        // generates random numbers based on difficulty level
+
             Console.Clear();
             Console.WriteLine(message);
 
             var random = new Random();
             var score = 0;
 
-            int firstNumber;
-            int secondNumber;
+            Stopwatch timer = Stopwatch.StartNew();     // starts the timer
 
             for (int i = 0; i < 5; i++)     // runs the game 5 times
             {
-                firstNumber = random.Next(1, 50);
-                secondNumber = random.Next(1, 50);
-
-                Console.Write($"{firstNumber} + {secondNumber} = ");
+                Console.Write($"{numbers[0]} + {numbers[1]} = ");
                 var result = Console.ReadLine();
 
                 result = Helpers.ValidateResult(result);
 
-                if (int.Parse(result) == firstNumber + secondNumber)        // if successfully parsed var to int AND it is equal to the sum
+                if (int.Parse(result) == numbers[0] + numbers[1])        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Correct answer!");
                     Console.ResetColor();
+                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel);
                     score++;
                 }
                 else
@@ -35,16 +36,18 @@
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Wrong answer!");
                     Console.ResetColor();
+                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel);
                 }
 
                 if (i == 4)
                 {
+                    timer.Stop();
                     Console.WriteLine($"Game over. Your final score is {score}\nPress ANY key to go to the main menu.");
+                    Console.WriteLine($"Time elapsed: {Helpers.GameDuration(timer)}");
                     Console.ReadKey();
                 }
 
             }
-
             Helpers.AddToHistory(score, GameType.Addition);        // possible because of static.
 
         }

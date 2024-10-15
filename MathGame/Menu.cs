@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks.Sources;
+﻿using System.Text.RegularExpressions;
+using System.Threading.Tasks.Sources;
 
 namespace MathGame
 {
@@ -35,13 +36,43 @@ namespace MathGame
 
                 var gameSelected = Console.ReadLine().Trim().ToUpper();
 
+                /// This needs some insight and proper placing. When using 'continue', the code runs again and Clears the console.
+                /// As a result, the "Invalid input" isn't properly displayed.
+
+                if (!Regex.IsMatch(gameSelected, "[V|A|S|M|D|Q]"))
+                {
+                    Console.WriteLine("Invalid input");
+                    continue;
+                }
+
+                Console.WriteLine($"Choose a difficulty level:\n- easy\n- medium\n- hard");
+                string input = Console.ReadLine().Trim().ToUpper();
+                Difficulty difficultyLevel = new Difficulty();
+
+                switch (input)
+                {
+                    case "EASY":
+                        difficultyLevel = Difficulty.Easy;
+                        break;
+                    case "MEDIUM":
+                        difficultyLevel = Difficulty.Medium;
+                        break;
+                    case "HARD":
+                        difficultyLevel = Difficulty.Hard;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input");
+                        break;
+
+                }
+
                 switch (gameSelected)
                 {
                     case "V":
                         Helpers.GamesHistory("Game's history:");
                         break;
                     case "A":
-                        engine.AdditionGame("Addition game");
+                        engine.AdditionGame("Addition game", difficultyLevel);
                         break;
                     case "S":
                         engine.SubtractionGame("Subtraction game");
