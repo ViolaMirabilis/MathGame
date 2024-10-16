@@ -147,6 +147,7 @@ namespace MathGame
         }
         internal static string GameDuration(Stopwatch timer)
         {
+            // adding a new comment to see how github works
             TimeSpan ts = timer.Elapsed;
 
             string elapsedTime = "";
