@@ -61,6 +61,7 @@ namespace MathGame
             var random = new Random();
             var score = 0;
 
+            Stopwatch timer = Stopwatch.StartNew();
 
             for (int i = 0; i < 5; i++)     // runs the game 5 times
             {
@@ -88,7 +89,9 @@ namespace MathGame
 
                 if (i == 4)
                 {
+                    timer.Stop();
                     Console.WriteLine($"Game over. Your final score is {score}\nPress ANY key to go to the main menu.");
+                    Console.WriteLine($"Time elapsed: {Helpers.GameDuration(timer)}");
                     Console.ReadKey();
                 }
             }
@@ -103,6 +106,8 @@ namespace MathGame
 
             var random = new Random();
             var score = 0;
+
+            Stopwatch timer = Stopwatch.StartNew();
 
             for (int i = 0; i < 5; i++)     // runs the game 5 times
             {
@@ -129,7 +134,9 @@ namespace MathGame
 
                 if (i == 4)
                 {
+                    timer.Stop();
                     Console.WriteLine($"Game over. Your final score is {score}\nPress ANY key to go to the main menu.");
+                    Console.WriteLine($"Time elapsed: {Helpers.GameDuration(timer)}");
                     Console.ReadKey();
                 }
 
@@ -143,6 +150,8 @@ namespace MathGame
             Console.WriteLine(message);
 
             var score = 0;
+
+            Stopwatch timer = Stopwatch.StartNew();
 
             for (int i = 0; i < 5; i++)
             {
@@ -169,7 +178,9 @@ namespace MathGame
 
                 if (i == 4)
                 {
+                    timer.Stop();
                     Console.WriteLine($"Game over. Your final score is {score}\nPress ANY key to go to the main menu.");
+                    Console.WriteLine($"Time elapsed: {Helpers.GameDuration(timer)}");
                     Console.ReadKey();
                 }
             }
