@@ -72,16 +72,16 @@ namespace MathGame
                         Helpers.GamesHistory("Game's history:");
                         break;
                     case "A":
-                        engine.AdditionGame("Addition game", difficultyLevel);
+                        engine.AdditionGame("Addition game", difficultyLevel, GameType.Addition);
                         break;
                     case "S":
-                        engine.SubtractionGame("Subtraction game");
+                        engine.SubtractionGame("Subtraction game", difficultyLevel, GameType.Subtraction);
                         break;
                     case "M":
-                        engine.MultiplicationGame("Multiplication game");
+                        engine.MultiplicationGame("Multiplication game", difficultyLevel, GameType.Multiplication);
                         break;
                     case "D":
-                        engine.DivisionGame("Division game");
+                        engine.DivisionGame("Division game", difficultyLevel, GameType.Division);
                         break;
                     case "Q":
                         Console.ForegroundColor = ConsoleColor.Green;

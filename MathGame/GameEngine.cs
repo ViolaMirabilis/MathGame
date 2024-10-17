@@ -4,9 +4,9 @@ namespace MathGame
 {
     internal class GameEngine
     {
-        internal void AdditionGame(string message, Difficulty difficultyLevel)
+        internal void AdditionGame(string message, Difficulty difficultyLevel, GameType gameType)
         {
-            var numbers = Helpers.GetDifficultyNumbers(difficultyLevel);        // generates random numbers based on difficulty level
+            int[] numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);        // generates random numbers based on difficulty level
 
             Console.Clear();
             Console.WriteLine(message);
@@ -28,7 +28,7 @@ namespace MathGame
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Correct answer!");
                     Console.ResetColor();
-                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel);
+                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
                     score++;
                 }
                 else
@@ -36,7 +36,7 @@ namespace MathGame
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Wrong answer!");
                     Console.ResetColor();
-                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel);
+                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
                 }
 
                 if (i == 4)
@@ -51,32 +51,32 @@ namespace MathGame
             Helpers.AddToHistory(score, GameType.Addition);        // possible because of static.
 
         }
-        internal void SubtractionGame(string message)
+        internal void SubtractionGame(string message, Difficulty difficultyLevel, GameType gameType)
         {
+            // generates numbers based on difficulty
+            int[] numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
             Console.Clear();
             Console.WriteLine(message);
 
             var random = new Random();
             var score = 0;
 
-            int firstNumber;
-            int secondNumber;
 
             for (int i = 0; i < 5; i++)     // runs the game 5 times
             {
-                firstNumber = random.Next(1, 50);
-                secondNumber = random.Next(1, 50);
 
-                Console.Write($"{firstNumber} - {secondNumber} = ");
+                Console.Write($"{numbers[0]} - {numbers[1]} = ");
                 var result = Console.ReadLine();
 
                 result = Helpers.ValidateResult(result);
 
-                if (int.Parse(result) == firstNumber - secondNumber)        // if successfully parsed var to int AND it is equal to the sum
+                if (int.Parse(result) == numbers[0] - numbers[1])        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Correct answer!");
                     Console.ResetColor();
+                    // rolls different numbers
+                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
                     score++;
                 }
                 else
@@ -95,32 +95,29 @@ namespace MathGame
 
             Helpers.AddToHistory(score, GameType.Subtraction);
         }
-        internal void MultiplicationGame(string message)
+        internal void MultiplicationGame(string message, Difficulty difficultyLevel, GameType gameType)
         {
+            int[] numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
             Console.Clear();
             Console.WriteLine(message);
 
             var random = new Random();
             var score = 0;
 
-            int firstNumber;
-            int secondNumber;
-
             for (int i = 0; i < 5; i++)     // runs the game 5 times
             {
-                firstNumber = random.Next(1, 5);
-                secondNumber = random.Next(1, 15);
-
-                Console.Write($"{firstNumber} * {secondNumber} = ");
+                Console.Write($"{numbers[0]} * {numbers[1]} = ");
                 var result = Console.ReadLine();
 
                 result = Helpers.ValidateResult(result);
 
-                if (int.Parse(result) == firstNumber * secondNumber)        // if successfully parsed var to int AND it is equal to the sum
+                if (int.Parse(result) == numbers[0] * numbers[1])        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Correct answer!");
                     Console.ResetColor();
+                    // rolls different numbers
+                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
                     score++;
                 }
                 else
@@ -139,8 +136,9 @@ namespace MathGame
             }
             Helpers.AddToHistory(score, GameType.Multiplication);
         }
-        internal void DivisionGame(string message)
+        internal void DivisionGame(string message, Difficulty difficultyLevel, GameType gameType)
         {
+            int[] numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
             Console.Clear();
             Console.WriteLine(message);
 
@@ -148,20 +146,18 @@ namespace MathGame
 
             for (int i = 0; i < 5; i++)
             {
-                var divisionNumbers = Helpers.GetDivisionNumbers();     // holds the int array returned by the method
-                var firstNumber = divisionNumbers[0];
-                var secondNumber = divisionNumbers[1];
-
-                Console.WriteLine($"{firstNumber} : {secondNumber}");
+                Console.WriteLine($"{numbers[0]} : {numbers[1]}");
                 var result = Console.ReadLine();
 
                 result = Helpers.ValidateResult(result);
 
-                if (int.Parse(result) == firstNumber / secondNumber)        // if successfully parsed var to int AND it is equal to the sum
+                if (int.Parse(result) == numbers[0] / numbers[1])        // if successfully parsed var to int AND it is equal to the sum
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Correct answer!");
                     Console.ResetColor();
+                    // rolls different numbers
+                    numbers = Helpers.GetDifficultyNumbers(difficultyLevel, gameType);
                     score++;
                 }
                 else

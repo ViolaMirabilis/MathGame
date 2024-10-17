@@ -81,27 +81,94 @@ namespace MathGame
         }
 
         // sets different number values to the corresponding difficulty levels
-        internal static int[] GetDifficultyNumbers(Difficulty difficultyLevel)
+        internal static int[] GetDifficultyNumbers(Difficulty difficulty, GameType gameType)
         {
             var random = new Random();
             int firstNumber = 0;
             int secondNumber = 0;
 
             var result = new int[2];    // an array that holds two numbers [0] and [1] (number one, number two)
-            switch (difficultyLevel)
+            switch (difficulty, gameType)
             {
-                case Difficulty.Easy:       // numbers 1-10
+                // ADDITION
+                case (Difficulty.Easy, GameType.Addition):       // numbers 1-10
                     firstNumber = random.Next(1, 11);
-                    secondNumber = random.Next(1, 11);
+                    secondNumber = random.Next(11, 11);
                     break;
 
-                case Difficulty.Medium:     // numbers 11 - 25
+                case (Difficulty.Medium, GameType.Addition):     // numbers 11 - 25.
                     firstNumber = random.Next(11, 26);
                     secondNumber = random.Next(11, 26);
                     break;
-                case Difficulty.Hard:       // numbers 25-50;
+                case (Difficulty.Hard, GameType.Addition):       // numbers 25-50;
                     firstNumber = random.Next(25, 51);
                     secondNumber = random.Next(25, 51);
+                    break;
+                // SUBTRACTION
+                case (Difficulty.Easy, GameType.Subtraction):       // numbers 1-10
+                    while ((firstNumber - secondNumber) < 1)
+                    {
+                    firstNumber = random.Next(1, 11);
+                    secondNumber = random.Next(1, 11);
+                    }
+                    break;
+
+                case (Difficulty.Medium, GameType.Subtraction):     // numbers 11 - 25
+                    while ((firstNumber - secondNumber) < 1)
+                    {
+                        firstNumber = random.Next(11, 26);
+                        secondNumber = random.Next(11, 26);
+                    }                   
+                    break;
+                case (Difficulty.Hard, GameType.Subtraction):       // numbers 25-50;
+                    while((firstNumber - secondNumber) < 1)
+                    {
+                        firstNumber = random.Next(25, 51);
+                        secondNumber = random.Next(25, 51);
+                    }
+                    break;
+                // MULTIPLICATION
+                case (Difficulty.Easy, GameType.Multiplication):       // numbers 1-9
+                    firstNumber = random.Next(1, 11);
+                    secondNumber = random.Next(1, 10);
+                    break;
+
+                case (Difficulty.Medium, GameType.Multiplication):     // numbers 1 - 20
+                    firstNumber = random.Next(1, 21);       // 1 - 20   
+                    secondNumber = random.Next(1, 9);     // 1 - 9
+                    break;
+                case (Difficulty.Hard, GameType.Multiplication):       // numbers 25-50;
+                    firstNumber = random.Next(1, 51);   // 1 - 50
+                    secondNumber = random.Next(1, 9); // 1 - 9
+                    break;
+                // DIVISION
+                case (Difficulty.Easy, GameType.Division):       // numbers 1-10
+                    firstNumber = random.Next(1, 11);
+                    secondNumber = random.Next(1, 11);
+                    while (firstNumber % secondNumber != 0 )
+                    {
+                        firstNumber = random.Next(1, 11);
+                        secondNumber = random.Next(1, 11);
+                    }
+                    break;
+
+                case (Difficulty.Medium, GameType.Division):     // numbers 11 - 25
+                    firstNumber = random.Next(11, 26);
+                    secondNumber = random.Next(1, 11);
+                    while (firstNumber % secondNumber != 0)
+                    {
+                        firstNumber = random.Next(11, 26);
+                        secondNumber = random.Next(1, 11);
+                    }
+                    break;
+                case (Difficulty.Hard, GameType.Division):       // numbers 25-50;
+                    firstNumber = random.Next(25, 101);
+                    secondNumber = random.Next(1, 20);
+                    while (firstNumber % secondNumber != 0)
+                    {
+                    firstNumber = random.Next(25, 101);
+                    secondNumber = random.Next(1, 20);
+                    }
                     break;
             }
             result[0] = firstNumber;
