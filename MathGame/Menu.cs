@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks.Sources;
 
 namespace MathGame
@@ -44,6 +45,11 @@ namespace MathGame
                     Console.WriteLine("Invalid input");
                     continue;
                 }
+                else if (Regex.IsMatch(gameSelected, "[V]"))
+                {
+                    Helpers.GamesHistory("Game's history:");
+                    continue;
+                }
 
                 Console.WriteLine($"Choose a difficulty level:\n- easy\n- medium\n- hard");
                 string input = Console.ReadLine().Trim().ToUpper();
@@ -65,9 +71,10 @@ namespace MathGame
                         break;
 
                 }
-
+                
                 switch (gameSelected)
                 {
+                    
                     case "V":
                         Helpers.GamesHistory("Game's history:");
                         break;
