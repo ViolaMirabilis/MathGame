@@ -13,6 +13,7 @@ internal class Game
     public int Score { get; set; } // exactly the same as above, but we can't have logic here
     public DateTime Date { get; set; }
     public GameType Type { get; set; }
+    public Difficulty Difficulty { get; set; }
 }
 
 internal enum GameType

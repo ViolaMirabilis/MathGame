@@ -45,7 +45,7 @@ namespace MathGame
                 Console.WriteLine("-----------------------------------------------");
                 foreach (var game in games)     // runs through the games List
                 {
-                    Console.WriteLine($"- Date: {game.Date} | Game: {game.Type} | Score: {game.Score}");
+                    Console.WriteLine($"- Date: {game.Date} | Game: {game.Type} | Difficulty: {game.Difficulty}| Score: {game.Score}");
                 }
                 Console.WriteLine("-----------------------------------------------");
             }
@@ -53,10 +53,10 @@ namespace MathGame
             Console.WriteLine("Press ANY game to go back to the main menu!");
             Console.ReadKey();
         }
-        internal static void AddToHistory(int gameScore, GameType gameType)
+        internal static void AddToHistory(int gameScore, GameType gameType, Difficulty difficulty)
         {
             // we add a whole new "game" object to the list (so one entry stores date, score and game type)
-            games.Add(new Game { Date = DateTime.Now, Score = gameScore, Type = gameType});
+            games.Add(new Game { Date = DateTime.Now, Score = gameScore, Type = gameType, Difficulty = difficulty});
             // this refers to the Game.cs class
         }
         internal static int[] GetDivisionNumbers()

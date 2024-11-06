@@ -48,7 +48,7 @@ namespace MathGame
                 }
 
             }
-            Helpers.AddToHistory(score, GameType.Addition);        // possible because of static.
+            Helpers.AddToHistory(score, GameType.Addition, difficultyLevel);        // possible because of static.
 
         }
         internal void SubtractionGame(string message, Difficulty difficultyLevel, GameType gameType)
@@ -96,7 +96,7 @@ namespace MathGame
                 }
             }
 
-            Helpers.AddToHistory(score, GameType.Subtraction);
+            Helpers.AddToHistory(score, GameType.Subtraction, difficultyLevel);
         }
         internal void MultiplicationGame(string message, Difficulty difficultyLevel, GameType gameType)
         {
@@ -141,7 +141,7 @@ namespace MathGame
                 }
 
             }
-            Helpers.AddToHistory(score, GameType.Multiplication);
+            Helpers.AddToHistory(score, GameType.Multiplication, difficultyLevel);
         }
         internal void DivisionGame(string message, Difficulty difficultyLevel, GameType gameType)
         {
@@ -184,7 +184,7 @@ namespace MathGame
                     Console.ReadKey();
                 }
             }
-            Helpers.AddToHistory(score, GameType.Division);
+            Helpers.AddToHistory(score, GameType.Division, difficultyLevel);
 
         }
     }
